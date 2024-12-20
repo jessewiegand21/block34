@@ -83,21 +83,21 @@ const init = async () => {
       createRestaurant({ name: "Outback" }),
       createRestaurant({ name: "Elways" }),
     ]);
-  console.log(await fetchCustomers());
-  console.log(await fetchRestaurants);
+
   const reservation = await Promise.all([
     createReservation({
       customer_id: Jesse.id,
       restaurant_id: Elways.id,
       reservation_date: "05/16/2025",
+      party_count: 10,
     }),
   ]);
-  console.log(await fetchReservations());
+
   await destroyReservation({
     id: reservation.id,
     customer_id: reservation.customer_id,
   });
-  console.log(await fetchReservations);
+
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
     console.log(`listening on port ${port}`);
